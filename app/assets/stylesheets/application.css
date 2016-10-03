@@ -10,6 +10,25 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *
+ *
+ *= require bootstrap_and_overrides
+ %= require theme
  *= require_tree .
  *= require_self
  */
+
+.navbar-space-lg {
+  margin-top: 7rem;
+  margin-bottom: 7rem;
+}
+
+.navbar-space {
+  margin-top: 4.2rem;
+  margin-bottom: 4.2rem;
+}
+
+.page-space-lg {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
