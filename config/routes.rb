@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   # resources :items, only: [:new, :create, :index, :show]
 
+  post '/items/:id/publish' => 'items#publish', as: :publish
+
   resources :items, only: [:new, :create, :index, :show] do
     resources :bids, only: [:new, :create]
   end

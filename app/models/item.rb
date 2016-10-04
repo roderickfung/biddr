@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :current_price, presence: true
   validates :reserve_price, presence: true, numericality: {greater_than: 0}
+  validates :aasm_state, presence: true
   validates :end_date, presence: true
 
   include AASM

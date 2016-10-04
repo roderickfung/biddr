@@ -25,7 +25,7 @@
           <td><b><%=item.end_date%></b></td>
           <td><%=number_to_currency(item.current_price)%></td>
           <td><%=truncate(item.description, length: 50, omission: '... ')%></td>
-          <td><%=item.aasm_state%></td>
+          <td><%=item.aasm_state.gsub('_', ' ').titleize%></td>
           <td><%=item.bids.count%></td>
           <td>
             <%=link_to item_path(item) do %>

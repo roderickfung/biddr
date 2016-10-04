@@ -18,13 +18,13 @@
 
 <div class='row'>
   <div class='col-sm-4'>
-      <p class='text-right'><b>Current State</b></p>
-      <p class='text-right'><%=@item.aasm_state%></p>
-      <% if user_signed_in? && current_user == @item.user%>
-        <div class='text-right'>
-          <%=link_to 'Publish', '#', class:'btn btn-default btn-xs'%>
-        </div>
-      <%end%>
+    <p class='text-right'><b>Current State</b></p>
+    <p class='text-right'><%=@item.aasm_state.gsub("_", " ").titleize%></p>
+    <% if user_signed_in? && current_user == @item.user%>
+      <div class='text-right'>
+        <%=link_to 'Publish', publish_path(@item), method: :post, class:'btn btn-default btn-xs'%>
+      </div>
+    <%end%>
   </div>
   <div class='col-sm-8'>
     <p><%=@item.description%></p>
@@ -48,25 +48,36 @@
       </div>
       <div class='in-column-space-sm'></div>
     </div>
-    <div class='row'>
+    <%if @bids.count > 0 %>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <% @bids.each do |bid| %>
+            <%=render '/bids/bid', bid: bid%>
+          <%end%>
+        </div>
+      </div>
+    <%else%>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <p>There are currently no bids.</p>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
+
+
+<% if user_signed_in? %>
+  <div class='page-space'></div>
+
+  <div class='row'>
+    <div class='col-sm-4'>
+      <!-- <p class='text-right'>New Bid</p> -->
+    </div>
+    <div class='col-sm-8'>
       <div class='col-sm-12'>
-        <% @bids.each do |bid| %>
-          <%=render '/bids/bid', bid: bid%>
-        <%end%>
+        <%= render '/bids/form', {item: @item, bid: @bid} %>
       </div>
     </div>
   </div>
-</div>
-
-<div class='page-space'></div>
-
-<div class='row'>
-  <div class='col-sm-4'>
-    <!-- <p class='text-right'>New Bid</p> -->
-  </div>
-  <div class='col-sm-8'>
-    <div class='col-sm-12'>
-      <%= render '/bids/form', {item: @item, bid: @bid} %>
-    </div>
-  </div>
-</div>
+<%end%>

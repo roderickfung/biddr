@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_item, only: [:show]
+  before_action :find_item, only: [:show, :publish]
 
   LIMIT = 20
 
@@ -26,6 +26,13 @@ class ItemsController < ApplicationController
   def show
     @bids = @item.bids
     @bid = Bid.new
+  end
+
+  def publish
+    if @item.draft?
+      @item.publish!
+      redirect_to item_path(@item), notice: 'Auction Item Published'
+    end
   end
 
   protected
