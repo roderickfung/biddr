@@ -1,0 +1,44 @@
+<div class='row'>
+  <div class='col-sm-4'>
+    <h1>Auction List</h1>
+  </div>
+</div>
+
+<div class='page-space-lg'></div>
+
+<div class='row'>
+  <div class='col-sm-12'>
+
+    <table class='table table-striped'>
+      <tr>
+        <th>Name</th>
+        <th>End Date</th>
+        <th>Bid Price</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Bids</th>
+        <th>View</th>
+      </tr>
+      <% @items.each do |item| %>
+        <tr>
+          <td><b><%=item.name%></b></td>
+          <td><b><%=item.end_date%></b></td>
+          <td><%=number_to_currency(item.current_price)%></td>
+          <td><%=truncate(item.description, length: 50, omission: '... ')%></td>
+          <td><%=item.aasm_state%></td>
+          <td><%=item.bids.count%></td>
+          <td>
+            <%=link_to item_path(item) do %>
+              <i class='fa fa-eye' aria-hidden='true'></i>
+            <%end%>
+          </td>
+        </tr>
+      <%end%>
+    </table>
+
+  </div>
+</div>
+
+<center>
+  <%= paginate @items %>
+</center>

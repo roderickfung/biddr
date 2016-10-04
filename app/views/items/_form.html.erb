@@ -1,0 +1,69 @@
+<%= form_for @item, html: {class: 'form-horizontal'} do |f| %>
+
+  <div class='form-group'>
+    <div class='row'>
+      <div class='col-sm-offset-2 col-sm-2'>
+        <%= f.label :name, class: 'control-label'%>
+      </div>
+      <div class='col-sm-4'>
+        <%= f.text_field :name, class: 'form-control'%>
+      </div>
+    </div>
+  </div>
+
+
+  <div class='form-group'>
+    <div class='row'>
+      <div class='col-sm-offset-2 col-sm-2'>
+        <%= f.label :end_date, class: 'control-label'%>
+      </div>
+      <div class='col-sm-4'>
+        <div class='input-group date' id='datepicker'>
+          <%= f.text_field :end_date, class: 'form-control'%>
+          <!-- <input type='text' class="form-control" /> -->
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $(function () {
+          $('#datepicker').datetimepicker({
+            format: 'DD/MM/YYYY'
+          });
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <div class='row'>
+      <div class='col-sm-offset-2 col-sm-2'>
+        <%= f.label :description, class: 'control-label'%>
+      </div>
+      <div class='col-sm-6'>
+        <%= f.text_area :description, class: 'form-control', rows: 5%>
+      </div>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <div class='row'>
+      <div class='col-sm-offset-2 col-sm-2'>
+        <%= f.label :reserve_price, class: 'control-label'%>
+      </div>
+      <div class='col-sm-4'>
+        <%= f.number_field :reserve_price, class: 'form-control'%>
+      </div>
+    </div>
+  </div>
+
+  <div class='form-group'>
+    <div class='row'>
+      <div class='col-sm-offset-4 col-sm-2'>
+        <%= f.submit 'Create Auction Item', class: 'btn btn-primary'%>
+      </div>
+    </div>
+  </div>
+
+<%end%>

@@ -16,17 +16,19 @@ ActiveRecord::Schema.define(version: 20161003170124) do
   enable_extension "plpgsql"
 
   create_table "bids", force: :cascade do |t|
-    t.datetime "date"
     t.float    "price"
+    t.integer  "item_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_bids_on_item_id", using: :btree
     t.index ["user_id"], name: "index_bids_on_user_id", using: :btree
   end
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.float    "current_price"
     t.float    "reserve_price"
     t.date     "end_date"
     t.string   "aasm_state"
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 20161003170124) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "bids", "items"
   add_foreign_key "bids", "users"
   add_foreign_key "items", "users"
 end

@@ -1,0 +1,72 @@
+<div class='row'>
+  <div class='col-sm-offset-4 col-sm-8'>
+    <h1><%=@item.name%></h1>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-sm-4'>
+
+  </div>
+  <div class='col-sm-8'>
+    <h4>Current Price: &nbsp;&nbsp; <%=number_to_currency(@item.current_price)%> </h4>
+    <h5>Ends On: &nbsp;&nbsp; <%=@item.end_date.strftime('%d/%m/%Y')%></h5>
+  </div>
+</div>
+
+<div class='page-space-lg'></div>
+
+<div class='row'>
+  <div class='col-sm-4'>
+      <p class='text-right'><b>Current State</b></p>
+      <p class='text-right'><%=@item.aasm_state%></p>
+      <% if user_signed_in? && current_user == @item.user%>
+        <div class='text-right'>
+          <%=link_to 'Publish', '#', class:'btn btn-default btn-xs'%>
+        </div>
+      <%end%>
+  </div>
+  <div class='col-sm-8'>
+    <p><%=@item.description%></p>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-sm-offset-4 col-sm-4'>
+    <hr />
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-sm-4'>
+
+  </div>
+  <div class='col-sm-8'>
+    <div class='row'>
+      <div class='col-sm-6'>
+        <h4>Current Bids</h4>
+      </div>
+      <div class='in-column-space-sm'></div>
+    </div>
+    <div class='row'>
+      <div class='col-sm-12'>
+        <% @bids.each do |bid| %>
+          <%=render '/bids/bid', bid: bid%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='page-space'></div>
+
+<div class='row'>
+  <div class='col-sm-4'>
+    <!-- <p class='text-right'>New Bid</p> -->
+  </div>
+  <div class='col-sm-8'>
+    <div class='col-sm-12'>
+      <%= render '/bids/form', {item: @item, bid: @bid} %>
+    </div>
+  </div>
+</div>

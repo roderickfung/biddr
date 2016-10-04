@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
 
   def authenticate_user!
-    redirect_to root_path unless user_signed_in?
+    redirect_to new_session_path unless user_signed_in?
   end
 
   def current_user

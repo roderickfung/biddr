@@ -1,0 +1,19 @@
+<div class='row'>
+  <div class='col-sm-1'>
+    <p><%=number_to_currency(bid.price)%></p>
+  </div>
+  <div class='col-sm-1'>
+    <center>
+      <p> | </p>
+    </center>
+  </div>
+  <div class='col-sm-2'>
+    <p><%=bid.user.full_name%></p>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-sm-6'>
+    <p>on: &nbsp;&nbsp;<%=bid.created_at.strftime('%m/%d/%Y')%></p>
+    <hr />
+  </div>
+</div>

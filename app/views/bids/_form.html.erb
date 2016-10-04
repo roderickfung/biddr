@@ -1,0 +1,14 @@
+<%= form_for [item, bid], html: {class: 'form-horizontal'} do |f| %>
+  <div class='form-group'>
+    <div class='row'>
+      <div class='col-sm-4'>
+        <div class='input-group'>
+          <%= f.number_field :price, placeholder: 'New Bid', class:'form-control input-sm'%>
+          <div class='input-group-btn'>
+            <%= f.submit 'Bid', class: 'btn btn-primary btn-sm'%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>

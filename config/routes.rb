@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  namespace :items do
+  # resources :items, only: [:new, :create, :index, :show]
+
+  resources :items, only: [:new, :create, :index, :show] do
     resources :bids, only: [:new, :create]
   end
 end

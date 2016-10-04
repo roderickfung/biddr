@@ -3,6 +3,7 @@ FactoryGirl.define do
     name "MyString"
     description "MyText"
     reserve_price 1.5
-    ends_on "2016-10-03"
+    end_date "2016-10-03"
+    association :user, factory: :user
   end
 end
