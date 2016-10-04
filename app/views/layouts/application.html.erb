@@ -17,7 +17,7 @@
         </ul>
         <ul class='nav navbar-nav navbar-right'>
           <%if user_signed_in?%>
-            <li><%=link_to "#{current_user.full_name}", '#'%></li>
+            <li><%=link_to "#{current_user.full_name}", user_path(current_user)%></li>
           <%else%>
             <li><%=link_to "Welcome!", '#'%></li>
           <%end%>
@@ -25,7 +25,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class='glyphicon glyphicon-user'></span><span class="caret"></span></a>
             <ul class="dropdown-menu">
               <% if user_signed_in?%>
-                <li><%= link_to "#{current_user.full_name}", '#'%></li>
+                <li><%= link_to "User Profile", user_path(current_user)%></li>
                 <li><%= link_to "New Auction", new_item_path%></li>
                 <li><%= link_to "Log Out", sessions_path, method: :delete%></li>
               <%else%>

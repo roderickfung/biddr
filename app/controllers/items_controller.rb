@@ -20,11 +20,11 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.order(created_at: :desc).page(params[:page]).per(LIMIT)
+    @items = Item.where.not(aasm_state: ['draft', 'won', 'canceled']).order(created_at: :desc).page(params[:page]).per(LIMIT)
   end
 
   def show
-    @bids = @item.bids
+    @bids = @item.bids.order(created_at: :desc)
     @bid = Bid.new
   end
 

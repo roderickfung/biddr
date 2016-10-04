@@ -13,7 +13,7 @@
       <tr>
         <th>Name</th>
         <th>End Date</th>
-        <th>Bid Price</th>
+        <th>Current Bid</th>
         <th>Description</th>
         <th>Status</th>
         <th>Bids</th>
@@ -22,7 +22,7 @@
       <% @items.each do |item| %>
         <tr>
           <td><b><%=item.name%></b></td>
-          <td><b><%=item.end_date%></b></td>
+          <td><b><%=item.end_date.strftime('%d/%m/%Y')%></b></td>
           <td><%=number_to_currency(item.current_price)%></td>
           <td><%=truncate(item.description, length: 50, omission: '... ')%></td>
           <td><%=item.aasm_state.gsub('_', ' ').titleize%></td>
@@ -35,7 +35,6 @@
         </tr>
       <%end%>
     </table>
-
   </div>
 </div>
 
